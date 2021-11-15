@@ -1,0 +1,18 @@
+import postgraphile from "postgraphile";
+
+module.exports = postgraphile(
+  {
+    database: "DBNAME",
+    user: "DBUSER",
+    password: "DBPASS",
+    host: "HOST",
+    port: "PORT",
+  },
+  "public",
+  {
+    watchPg: true,
+    graphiql: true,
+    enhanceGraphiql: true,
+    ignoreRBAC: false,
+  }
+);
