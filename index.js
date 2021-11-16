@@ -1,5 +1,5 @@
 import express, { urlencoded } from "express";
-import postgraphile from "./postgraphile.config.js.example";
+import postgraphile from "./postgraphile.config.js";
 
 const app = express();
 const port = 3000;
