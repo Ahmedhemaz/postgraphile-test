@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@graphile/pg-pubsub": "^4.12.2",
     "express": "^4.17.1",
+    "graphile-utils": "^4.12.2",
     "postgraphile": "^4.12.5"
   },
   "devDependencies": {

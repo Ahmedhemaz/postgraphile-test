@@ -58,3 +58,32 @@ CREATE TABLE IF NOT EXISTS public_chat.messages(
       REFERENCES public_chat.conversations (ID)
 )
 
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION publish_message_to_conversation_topic(conversation_id int)
+RETURNS TRIGGER AS $$
+DECLARE
+v_record record
+v_topic text;
+BEGIN
+  --  v_topic := 'graphql:message:' || conversation_id ||;
+   v_topic = concat('graphql:message:', conversation_id)
+   perform pg_notify(v_topic, json_build_object('message', v_event)::text);
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+select  concat_topic_with_id(t.conversation_id) from (select * from public_chat.messages where id = 1)t;
+
+ select pg_notify('graphql:message:1', json_build_object(
+         'data',  '4'
+       )::text);
+
+select(select row_to_json(t) from 
+(select * from public_chat.messages 
+where id = 1)t)
